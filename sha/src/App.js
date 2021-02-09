@@ -1,40 +1,36 @@
 import React from 'react'; 
-import { BrowserRouter as Router,Switch,Route, } from "react-router-dom";
-import Home from "./components/Home/Home";
-import {UserProvider} from "./components/UserContext/UserContext";
-import Delete from './components/Delete/Delete';
-import Read from './components/Read/Read';
-import Create from './components/Create/Create';
-import Edit from './components/Edit/Edit';
 
+import { BrowserRouter as Router,Switch,Route, } from "react-router-dom";
+import Home from "./components/pages/Home"
+import About from "./components/pages/About"
+import Contact from "./components/pages/Contact"
+import NotFound from "./components/pages/NotFound"
+import Navbar from "./components/layout/Navbar"
+import AddUser from "./components/users/AddUser"
+import EditUser from "./components/users/EditUser"
+import View from "./components/users/View"
 function App() {
   return (
-    <div>
-      < UserProvider>
+    
       <Router>
+        <div>
+      <Navbar/>
       <Switch>
-      <Route path="/create/">
-            <Create />
-          </Route>
-          <Route path="/edit/:id">
-            <Edit/>
-          </Route>
-      <Route path="/read/:id">
-            <Read />
-          </Route>
-      <Route path="/delete/:id">
-            <Delete />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-         
-        </Switch>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/about" component={About}/>
+        <Route exact path="/contact" component={Contact}/>
+        <Route exact path="/users/add" component={AddUser}/>
+        <Route exact path="/users/edit/:id" component={EditUser}/>
+        <Route exact path="/users/:id" component={View}/>
+        <Route   component={NotFound}/>
+      </Switch>
 
+      </div>
       </Router>
-      </UserProvider>
-    </div>
   )
+    
+
+    
 }
 export default App;
 
